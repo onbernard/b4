@@ -1,37 +1,26 @@
-# ~~~~~~~~~~~ B4FMA getters
+# ~~~~~~~~~~~ FMA helpers
 
+# ~~~~~~~~~~~ getters
+
+#' Return the S slot of a FMA bandit object
+#'
+#' @param bandit A FMA bandit object
 #' @export
-B4FMA_get_visitor_reward <- function(bandit) {
-  validate_B4FMA(bandit)
-  bandit$visitor_reward
+b4_S <- function(bandit) {
+  UseMethod("b4_S")
 }
 
 #' @export
-B4FMA_get_choice <- function(bandit) {
-  validate_B4FMA(bandit)
-  bandit$choice
-}
-
-#' @export
-B4FMA_get_S <- function(bandit) {
-  validate_B4FMA(bandit)
+b4_S.FMA <- function(bandit) {
+  validate_FMA(bandit)
   bandit$S
 }
 
-#' @export
-B4FMA_get_time <- function(bandit) {
-  validate_B4FMA(bandit)
-  bandit$time
-}
+# ~~~~~~~~~~~
 
-#' @export
-B4FMA_get_horizon <- function(bandit) {
-  validate_B4FMA(bandit)
-  bandit$H
-}
+#' Generic is in BASE superclass
 
-#' @export
-B4FMA_get_K <- function(bandit) {
-  validate_B4FMA(bandit)
-  bandit$K
+b4_bandit_parameters.FMA <- function(bandit) {
+  validate_FMA(bandit)
+  return(c(list(), NextMethod()))
 }

@@ -1,15 +1,17 @@
 # ~~~~~~~~ Structure constructors
 
-new_FMA <- function(K,
+new_UCB <- function(K,
                     H,
                     visitor_reward,
                     choices,
                     rewards,
                     time,
                     S,
+                    proba,
+                    alpha,
                     ...,
                     class = character()) {
-  new_BASE(
+  new_FMA(
     K = K,
     H = H,
     visitor_reward = visitor_reward,
@@ -17,16 +19,24 @@ new_FMA <- function(K,
     rewards = rewards,
     time = time,
     S = S,
+    proba = proba,
+    alpha = alpha,
     ...,
-    class = c(class, "FMA"))
+    class = c(class, "UCB"))
 }
 
-empty_FMA <- function(K, ..., class = character()) {
-  empty_BASE(K, S = b4_generate_S(K), ..., class = c(class, "FMA"))
+empty_UCB <- function(K, alpha, ..., class = character()) {
+  empty_FMA(
+    K = K,
+    proba = vector(),
+    alpha = alpha,
+    ...,
+    class = c(class, "UCB")
+  )
 }
 
-validate_FMA <- function(bandit) {
-  stopifnot(inherits(bandit, what = c("FMA")))
+validate_UCB <- function(bandit) {
+  stopifnot(inherits(bandit, what = c("UCB")))
   # TODO
-  validate_BASE(bandit)
+  validate_FMA(bandit)
 }

@@ -1,7 +1,7 @@
 # ~~~~~~~~ functions commonly used in FMA policies
 
 #' @export
-B4FMA_play_arm <- function(iter, arm, S, visitor_reward) {
+b4_play_arm <- function(iter, arm, S, visitor_reward) {
   # Update means
   if(S[1, arm] == Inf){
     S[1, arm] <- visitor_reward[iter, arm]
@@ -17,11 +17,8 @@ B4FMA_play_arm <- function(iter, arm, S, visitor_reward) {
 }
 
 #' @export
-B4FMA_generate_S <- function(K) {
-  mu_hat <- rep(Inf, K)
-  N <- rep(0, K)
-
-  S <- rbind(mu_hat, N)
+b4_generate_S <- function(K) {
+  S <- matrix(0, nrow=2, ncol=K)
 
   colnames(S) <- paste('bandit', 1:K)
   rownames(S) <- c("average visitor_reward", "trials")

@@ -1,19 +1,26 @@
-# ~~~~~~~~~~~ B4UCB getters
+# ~~~~~~~~~~~
+
+# Generic is in BASE_helpers
 
 #' @export
-B4UCB_get_alpha <- function(bandit, alpha = NULL) {
-  validate_B4UCB(bandit)
-  if (!is.null(alpha)) {
-    stopifnot(is.double(alpha))
-    bandit$alpha <- alpha
-  }
-  bandit$alpha
+b4_proba.UCB <- function(bandit) {
+  validate_UCB(bandit)
+  bandit$proba
+}
+
+# ~~~~~~~~~~~
+
+# Generic is in BASE_helpers
+
+#' @export
+b4_bandit_parameters.UCB <- function(bandit) {
+  validate_UCB(bandit)
+  return(c(list(alpha=bandit$alpha), NextMethod()))
 }
 
 # ~~~~~~~~~~~
 
 #' @export
-B4UCB_get_probamax <- function(bandit) {
-  validate_B4UCB(bandit)
-  bandit$probamax
+print.UCB <- function(x, ...) { # TODO
+  print("lol UCB")
 }

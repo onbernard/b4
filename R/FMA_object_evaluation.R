@@ -1,55 +1,48 @@
 # ~~~~~~~~ FMA object evaluation
 
+#' Returns the actual FMA reward expectation vector based on visitor reward
+#'
+#' @param bandit A FMA bandit object
+#'
 #' @export
-B4FMA_cumulative_regret <- function(bandit) {
-  UseMethod("B4FMA_cumulative_regret")
+b4_mu <- function(bandit) {
+  UseMethod("b4_mu")
 }
 
 #' @export
-B4FMA_cumulative_regret.B4FMA <- function(bandit) {
-  # TODO
+b4_mu.FMA <- function(bandit) {
+  validate_FMA(bandit)
+  return(colMeans(b4_visitor_reward(bandit)))
 }
 
 # ~~~~~~~~
 
+#' Returns the estimated FMA reward expectation vector
+#'
+#' @param bandit A FMA bandit object
+#'
 #' @export
-B4FMA_regret <- function(bandit) {
-  UseMethod("B4FMA_regret")
-}
-
-#' @export
-B4FMA_regret.B4FMA <- function(bandit) {
-  # TODO
-}
-
-# ~~~~~~~~
-
-#' @export
-B4FMA_mu <- function(bandit) {
-  UseMethod("B4FMA_mu")
+b4_mu_hat <- function(bandit) {
+  UseMethod("b4_mu_hat")
 }
 
 #' @export
-B4FMA_mu.B4FMA <- function(bandit) {
-  # TODO
+b4_mu_hat.FMA <- function(bandit) {
+  validate_FMA(bandit)
+  return(b4_S(bandit)[1,])
 }
 
-# ~~~~~~~~
+# ~~~~~~~~~~~~~~~~
 
-#' @export
-B4FMA_mu_hat <- function(bandit) {
-  UseMethod("B4FMA_mu_hat")
+#' Generic for all FMA algorithm methods
+#'
+#' @param bandit A bandit object on which to append new observations
+#' @param visitor_reward visitor reward matrix. New observations
+#'
+FMA_simulate <- function(bandit, visitor_reward) {
+  UseMethod("FMA_simulate", bandit)
 }
 
-#' @export
-B4FMA_mu_hat.B4FMA <- function(bandit) {
-  # TODO
-}
+# FMA_simulate methods implemented in subclass_policies files
 
-# ~~~~~~~~
-
-B4FMA_simulate <- function(x, reward) {
-  UseMethod("B4FMA_simulate", x)
-}
-
-# You will find methods for fma_simulate in fma_pol files
+# ~~~~~~~~~~~~~~~~

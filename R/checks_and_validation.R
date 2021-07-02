@@ -37,3 +37,41 @@ check_visitor_reward <- function(visitor_reward, binariness = FALSE) {
 
   return(visitor_reward)
 }
+
+# ~~~~~~~~ Structure validation
+
+validate_B4FMA <- function(bandit) {
+  stopifnot(inherits(bandit, what = "B4FMA"))
+  # TODO
+}
+
+# ~~~~~~~~
+
+validate_B4UCB <- function(bandit) {
+  stopifnot(inherits(bandit, what = "B4UCB"))
+  validate_B4FMA(bandit)
+  # TODO
+}
+
+# ~~~~~~~~
+
+validate_B4EXP3 <- function(bandit) {
+  stopifnot(inherits(bandit, what = "B4EXP3"))
+  validate_B4FMA(bandit)
+  # TODO
+}
+
+# ~~~~~~~~
+
+
+validate_B4TS <- function(bandit) {
+  stopifnot(inherits(bandit, what = "B4TS"))
+  validate_B4FMA(bandit)
+  # TODO
+}
+# ~~~~~~~~
+
+validate_B4EPSG <- function(bandit) {
+  stopifnot(inherits(bandit, what = "B4EPSG"))
+  validate_B4FMA(bandit)
+}

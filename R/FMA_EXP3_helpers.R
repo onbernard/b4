@@ -1,35 +1,21 @@
-# ~~~~~~~~~~~ B4EXP3 getters
+# ~~~~~~~~~~~ EXP3 getters
 
 #' @export
-B4EXP3_get_gamma <- function(bandit, gamma = NULL) {
-  validate_B4EXP3(bandit)
-  if (!is.null(gamma)) {
-    stopifnot(is.double(gamma))
-    bandit$gamma <- gamma
-  }
-  bandit$gamma
+print.EXP3 <- function(x, ...) {
+  print("LOL EXP3")
 }
 
-#' @export
-B4EXP3_get_weight <- function(bandit) {
-  validate_B4EXP3(bandit)
-  bandit$weight
-}
+# ~~~~~~~~~~~
+
+# Generic is in BASE superclass
 
 #' @export
-B4EXP3_get_reward <- function(bandit) {
-  validate_B4EXP3(bandit)
-  bandit$reward
+b4_bandit_parameters.EXP3 <- function(bandit) {
+  validate_EXP3(bandit)
+  return(c(list(gamma = bandit$gamma,
+                weight = bandit$weight,
+                estimated_reward = bandit$estimated_reward,
+                prob = bandit$prob), NextMethod()))
 }
 
-#' @export
-B4EXP3_get_estimated_reward <- function(bandit) {
-  validate_B4EXP3(bandit)
-  bandit$estimated_reward
-}
-
-#' @export
-B4EXP3_get_prob <- function(bandit) {
-  validate_B4EXP3(bandit)
-  bandit$prob
-}
+# ~~~~~~~~~~~
