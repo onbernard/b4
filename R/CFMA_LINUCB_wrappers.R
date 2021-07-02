@@ -28,7 +28,7 @@
 #'K3 = crossprod(t(dt),arm_3)
 #'visitor_reward <-  data.frame(K1,K2,K3)
 #'dt <- as.data.frame(dt)
-#'b4_LINUCB(dt,visitor_reward)
+#'bandit <- b4_LINUCB(dt,visitor_reward)
 #'@export
 b4_LINUCB <-
   function(dt,
